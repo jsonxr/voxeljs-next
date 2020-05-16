@@ -48,7 +48,7 @@ if (isLibrary) {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js'
-    },  
+    },
     plugins:[
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({ title: 'Output', template: 'examples/public/index.html', inject: true}),
@@ -64,9 +64,10 @@ module.exports = ['source-map'].map(devtool => ({
 
   devServer: {
     https: true,
-    port: 443
+    port: 443,
+    host: '0.0.0.0',
   },
-  
+
   module: {
     rules: [
       {
