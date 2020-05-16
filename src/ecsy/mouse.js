@@ -2,6 +2,9 @@ import {Component, System} from 'ecsy'
 import {Vector2} from 'three'
 import {InputFrame} from './input.js'
 
+const LEFT_MOUSE_BUTTON = 1
+const RIGHT_MOUSE_BUTTON = 2
+
 export class MouseCursor extends Component {
     constructor() {
         super();
@@ -35,15 +38,16 @@ export class MouseSystem extends System {
     }
     _mouse_up(e) {
         this.pressed = false
+        console.log('mouse up')
         let diff = this.last_point.clone().sub(this.start_point)
         this.queries.inputs.results.forEach(ent => {
             let input = ent.getMutableComponent(InputFrame)
             input.state[InputFrame.ROTATION_DRAGGING] = false
             if(Math.abs(diff.x) < 10) {
-                if(this.buttons === 1) {
+                if(this.buttons === RIGHT_MOUSE_BUTTON) {
                     input.state[InputFrame.CREATE_AT_CURSOR] = true
                 }
-                if(this.buttons === 2) {
+                if(this.buttons === LEFT_MOUSE_BUTTON) {
                     input.state[InputFrame.DESTROY_AT_CURSOR] = true
                 }
 

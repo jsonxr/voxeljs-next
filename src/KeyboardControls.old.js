@@ -4,7 +4,7 @@ const toRad = (deg) => Math.PI / 180 * deg
 const Y_AXIS = new Vector3(0,1,0)
 const SPEED = 0.1
 
-export class KeyboardControls extends ECSComp {
+export class KeyboardControls2 extends ECSComp {
     constructor(app) {
         super()
         this.app = app

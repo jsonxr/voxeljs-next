@@ -1,5 +1,7 @@
 dist
 package-lock.json
+commonjs/index.js
+commonjs/index.js.map
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

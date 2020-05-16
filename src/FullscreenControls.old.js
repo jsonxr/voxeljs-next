@@ -45,14 +45,16 @@ export class FullScreenControls extends ECSComp {
         this.mousedownCallback = (e) => {
             if(!this.isEnabled()) return
             e.preventDefault()
+            Console.log('mousedown')
             const LEFT_MOUSE_BUTTON = 1
             const RIGHT_MOUSE_BUTTON = 2
-            if(e.buttons === LEFT_MOUSE_BUTTON) {
+            if(e.buttons === RIGHT_MOUSE_BUTTON ) {
+              console.log('RIGHT')
                 const res = this.traceRay()
                 res.hitPosition.add(res.hitNormal)
                 this._fire('setblock',res.hitPosition)
             }
-            if(e.buttons === RIGHT_MOUSE_BUTTON) {
+            if(e.buttons === LEFT_MOUSE_BUTTON) {
                 const res = this.traceRay()
                 this._fire('removeblock',res.hitPosition)
             }

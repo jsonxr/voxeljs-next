@@ -27,12 +27,13 @@ export class DesktopControls extends ECSComp {
         this.canvas.addEventListener('mousedown',e => {
             if(!this.isEnabled()) return
             const pt = new Vector2(e.clientX,e.clientY)
-            if(e.buttons === LEFT_MOUSE_BUTTON) {
+            if(e.buttons === RIGHT_MOUSE_BUTTON) {
+              console.log('right down')
                 const res = traceRayAtScreenCoords(this.app, pt, this.distance)
                 res.hitPosition.add(res.hitNormal)
                 this._fire('setblock',res.hitPosition)
             }
-            if(e.buttons === RIGHT_MOUSE_BUTTON) {
+            if(e.buttons === LEFT_MOUSE_BUTTON) {
                 const res = traceRayAtScreenCoords(this.app, pt, this.distance)
                 this._fire('removeblock',res.hitPosition)
             }

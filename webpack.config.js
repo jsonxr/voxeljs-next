@@ -5,16 +5,21 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isLibrary = !!process.env.LIBRARY
 
+const defaults = {
+}
 
 let config;
 if (isLibrary) {
   console.log("Building for library")
   config = {
     entry: {
-      'voxeljs-next': path.join(__dirname, "src/index.js"),
+      'index': path.join(__dirname, "src/index.js"),
+    },
+    output: {
+      path: path.resolve(__dirname, 'commonjs')
     },
     plugins:[
-      new CleanWebpackPlugin(),
+      //new CleanWebpackPlugin(),
     ],
     externals: {
       three: {
@@ -40,6 +45,10 @@ if (isLibrary) {
       'voxeljs-next': path.join(__dirname, "src/index.js"),
       'app': path.join(__dirname, "examples/src/index.js"),
     },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js'
+    },  
     plugins:[
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({ title: 'Output', template: 'examples/public/index.html', inject: true}),
@@ -53,11 +62,11 @@ if (isLibrary) {
 module.exports = ['source-map'].map(devtool => ({
   mode: 'development',
 
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+  devServer: {
+    https: true,
+    port: 443
   },
-
+  
   module: {
     rules: [
       {

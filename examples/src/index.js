@@ -19,6 +19,8 @@ import {
   Object3D,
 } from 'ecsy-three';
 
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+
 import {MouseCursor, MouseSystem,
   KeyboardBindingSet, KeyboardSystem,
   VoxelLandscape, VoxelSystem, VoxelTextures,
@@ -72,12 +74,12 @@ world.registerSystem(KeyboardSystem)
 world.registerSystem(MouseSystem)
 world.registerSystem(HighlightSystem)
 world.registerSystem(DashboardDOMOvleraySystem)
-world.registerSystem(WebXRSystem);
-world.registerSystem(FullscreenSystem);
+//world.registerSystem(WebXRSystem);
+//world.registerSystem(FullscreenSystem);
 world.registerSystem(VoxelPlayerSystem)
 
 // Initialize the default sets of highlights and systems
-let data = initialize(world);
+let data = initialize(world, { vr: true });
 let {scene, renderer, camera} = data.entities;
 console.log("got it",data)
 
@@ -112,7 +114,7 @@ new TextureLoader().load('./dummy.jpg')
 scene.addComponent(DomDashboard)
 
 //set the active block to type 3 (TNT)
-scene.addComponent(ActiveBlock, {type:3})
+scene.addComponent(ActiveBlock, {type:2})
 
 // a pivot for rotating the world around
 let stageRot = world.createEntity()

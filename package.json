@@ -1,14 +1,15 @@
 {
   "name": "voxeljs-next",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The next generation of Voxel JS.",
-  "module": "dist/voxeljs-next.js",
   "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "prepublish": "npm run build",
     "start": "webpack-dev-server --mode development",
     "nuke": "rm package-lock.json && rm -rf dist && rm -rf node_modules && rm -rf examples/node_modules",
-    "build": "cd examples && npm i && cd .. && LIBRARY=true webpack"
+    "build": "cd examples && npm i && cd .. && LIBRARY=true webpack",
+    "build:web": "cd examples && npm i && cd .. && webpack"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,7 @@
   },
   "files": [
     "src",
-    "dist/voxeljs-next.js",
-    "dist/voxeljs-next.js.map"
+    "commonjs"
   ],
   "homepage": "https://github.com/joshmarinacci/voxeljs-next#readme",
   "peerDependencies": {
